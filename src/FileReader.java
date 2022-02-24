@@ -7,11 +7,13 @@ import java.util.Scanner;
 public class FileReader {
     public static ArrayList<String[]> readFileAsIntArray(String fileName) {
         File inputFile = new File (fileName);
+        System.out.println(inputFile);
         Scanner in = null;
         try {
             in = new Scanner (inputFile);
         } catch (FileNotFoundException e) {
             System.out.println ("Cannot open " + fileName);
+            System.out.println(e);
             System.exit (0);
         }
         ArrayList<String[]> result = new ArrayList<>();
