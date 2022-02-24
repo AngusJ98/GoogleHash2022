@@ -13,6 +13,7 @@ public class Parser {
         int numProject;
         numContribute = Integer.parseInt(info[0]);
         numProject = Integer.parseInt(info[1]);
+        
         ArrayList<Contributor> conts = new ArrayList<>();
         int currentCont = 0;
         int currentLine = 1;
@@ -28,10 +29,11 @@ public class Parser {
                 currentLine++;
             }
             conts.add(new Contributor(name, contSkills));
+            System.out.println(currentCont);
             currentCont++;
         }
         int currentProj = 0;
-        while (currentProj < numProject) {
+        while (currentProj < numProject ) {
             String[] projInfo = rawInput.get(currentLine);
             String name = projInfo[0];
             ArrayList<Skill> projSkills = new ArrayList<>();
@@ -47,6 +49,7 @@ public class Parser {
                 currentLine++;
             }
             projs.add(new Project(name, days, score, endDay, projSkills));
+            currentProj++;
         }
     }
 
