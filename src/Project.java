@@ -16,7 +16,7 @@ public class Project {
         this.days = days;
         this.bestBefore = endDay;
         this.roles = roles;
-
+        woking = new ArrayList<WorkingOn>();
     }
     public int getLastestFullDay(){
         return bestBefore-days;
