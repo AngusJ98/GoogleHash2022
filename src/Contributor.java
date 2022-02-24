@@ -4,8 +4,8 @@ public class Contributor {
     public ArrayList<Skill> skills;
     public String name;
     public Contributor(String name, ArrayList<Skill> skills){
-        name = name;
-        skills = skills;
+        this.name = name;
+        this.skills = skills;
     }
     public Skill getSkill(String skillName){
         Skill foundSkill = null;

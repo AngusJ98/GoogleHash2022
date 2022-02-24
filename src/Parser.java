@@ -1,18 +1,20 @@
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Parser {
     
-    public static ArrayList<Project> projs = new ArrayList<>();
-    public static ArrayList<Contributor> conts = new ArrayList<>();
+    public static ArrayList<Project> projs;
+    public static ArrayList<Contributor> conts;
 
     public static void getinfo(String fileName) {
+        Parser.conts = new ArrayList<>();
+        Parser.projs = new ArrayList<>();
         ArrayList<String[]> rawInput = FileReader.readFileAsIntArray(fileName);
         String[] info = rawInput.get(0);
         int numContribute;
         int numProject;
         numContribute = Integer.parseInt(info[0]);
         numProject = Integer.parseInt(info[1]);
+        
         ArrayList<Contributor> conts = new ArrayList<>();
         int currentCont = 0;
         int currentLine = 1;
@@ -27,11 +29,11 @@ public class Parser {
                 contSkills.add(skill);
                 currentLine++;
             }
-            conts.add(new Contributor(name, contSkills));
+            Parser.conts.add(new Contributor(name, contSkills));
             currentCont++;
         }
         int currentProj = 0;
-        while (currentProj < numProject) {
+        while (currentProj < numProject ) {
             String[] projInfo = rawInput.get(currentLine);
             String name = projInfo[0];
             ArrayList<Skill> projSkills = new ArrayList<>();
@@ -46,8 +48,11 @@ public class Parser {
                 projSkills.add(skill);
                 currentLine++;
             }
-            projs.add(new Project(name, days, score, endDay, projSkills));
+            Parser.projs.add(new Project(name, days, score, endDay, projSkills));
+            currentProj++;
         }
+        System.out.println(Parser.conts);
+        System.out.println(projs);
     }
 
 }
