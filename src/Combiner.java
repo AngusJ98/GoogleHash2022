@@ -23,7 +23,7 @@ public class Combiner {
 
 
             //sort incompleteProjs
-            Collections.sort(incompleteProjs, Comparator.comparingDouble(proj -> proj.scorePerDay()));
+            Collections.sort(incompleteProjs, Comparator.comparingDouble(proj -> -proj.scorePerDay()));
 
             for (Project i : incompleteProjs) {
                 boolean cantComplete = false;
@@ -37,7 +37,7 @@ public class Combiner {
                         }
                     }
 
-                    Collections.sort(availableConts, Comparator.comparingDouble(cont -> cont.goodness()));
+                    Collections.sort(availableConts, Comparator.comparingDouble(cont -> -cont.goodness()));
                     boolean personFound = false;
 
                     boolean canMentor = false;
