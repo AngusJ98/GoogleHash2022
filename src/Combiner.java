@@ -29,7 +29,7 @@ public class Combiner {
                 boolean cantComplete = false;
                 boolean isComplete = false;
                 int roleLooking = 0;
-                while (!cantComplete || !isComplete) {
+                while (!cantComplete && !isComplete) {
                     ArrayList<Contributor> availableConts = new ArrayList<>();
                     for (Contributor j : contributors) {
                         if (!j.isWorking) {
@@ -69,21 +69,23 @@ public class Combiner {
                                 cantComplete = true;
                             }
                         }
-                        if (cantComplete) {
-                            for (Contributor contrib : availableConts) {
-                                contrib.isWorking = false;
-                            }
-                            i.woking = new ArrayList<WorkingOn>();
-                        } else {
-                            // put code here
-                        }
+
                     }
+
                     roleLooking = roleLooking + 1;
                     if (roleLooking >= i.roles.size()){
                         isComplete = true;
                     }
                     //grab people
 
+                }
+                if (cantComplete) {
+                    for (WorkingOn contrib : i.woking) {
+                        contrib.contrib.isWorking = false;
+                    }
+                    i.woking = new ArrayList<WorkingOn>();
+                } else {
+                    // put code here
                 }
 
             }
