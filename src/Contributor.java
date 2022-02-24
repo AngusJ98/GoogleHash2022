@@ -7,7 +7,7 @@ public class Contributor {
     public Contributor(String name, ArrayList<Skill> skills){
         this.name = name;
         this.skills = skills;
-        isWorking = false;
+        this.isWorking = false;
     }
     public Skill getSkill(String skillName){
         Skill foundSkill = null;
