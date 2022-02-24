@@ -9,7 +9,7 @@ public class Output {
         StringBuilder pog = new StringBuilder();
         pog.append(projectsDone.size() + "\n");
         for (Project i : projectsDone) {
-            pog.append(i.name);
+            pog.append(i.name + "\n");
             for (WorkingOn j : i.woking) {
                 pog.append(j.contrib.name + " ");
             }
