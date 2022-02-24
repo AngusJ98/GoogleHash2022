@@ -23,6 +23,15 @@ public class Contributor {
         }
         return foundSkill;
     }
+    public int suitability(Skill skillGiven){
+        if(skillGiven.skillLevel >= getSkill(skillGiven.skillName).skillLevel){
+            return 2;
+        } else if (skillGiven.skillLevel - 1 == getSkill(skillGiven.skillName).skillLevel) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
     public void improveSkill(Skill skillUsed){
         Skill skillHas = this.getSkill(skillUsed.skillName);
         if (skillUsed.skillLevel - skillHas.skillLevel >= 0){
