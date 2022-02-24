@@ -15,7 +15,6 @@ public class Parser {
         numContribute = Integer.parseInt(info[0]);
         numProject = Integer.parseInt(info[1]);
         
-        ArrayList<Contributor> conts = new ArrayList<>();
         int currentCont = 0;
         int currentLine = 1;
         while (currentCont < numContribute) {

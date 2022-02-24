@@ -31,13 +31,15 @@ public class Combiner {
 
             for (Project i : incompleteProjs) {
 
-                //sort contributors by points
+                
 
                 //grab people
                 ArrayList<Skill> requiredSkills = i.roles;
                 ArrayList<Contributor> currentCont = new ArrayList<>();
-                for (Skill j : requiredSkills) {
+                
 
+                for (Skill j : requiredSkills) {
+                    Collections.sort(availableConts, Comparator.comparingDouble(cont -> cont.perform(j.Skill)));
                 }
 
             }
