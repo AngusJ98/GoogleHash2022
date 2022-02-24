@@ -76,9 +76,6 @@ public class Combiner {
                     if (roleLooking >= i.roles.size()){
                         isComplete = true;
                     }
-                    if (isComplete) {
-                        Output.projectsDone.add(i);
-                    }
 
                 }
                 if (cantComplete) {
@@ -86,6 +83,8 @@ public class Combiner {
                         contrib.contrib.isWorking = false;
                     }
                     i.woking = new ArrayList<WorkingOn>();
+                } else{
+                    Output.projectsDone.add(i);
                 }
 
             }
