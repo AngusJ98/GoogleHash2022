@@ -1,12 +1,13 @@
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Parser {
     
-    public static ArrayList<Project> projs = new ArrayList<>();
-    public static ArrayList<Contributor> conts = new ArrayList<>();
+    public static ArrayList<Project> projs;
+    public static ArrayList<Contributor> conts;
 
     public static void getinfo(String fileName) {
+        Parser.conts = new ArrayList<>();
+        Parser.projs = new ArrayList<>();
         ArrayList<String[]> rawInput = FileReader.readFileAsIntArray(fileName);
         String[] info = rawInput.get(0);
         int numContribute;
@@ -29,7 +30,6 @@ public class Parser {
                 currentLine++;
             }
             conts.add(new Contributor(name, contSkills));
-            System.out.println(currentCont);
             currentCont++;
         }
         int currentProj = 0;
@@ -51,6 +51,8 @@ public class Parser {
             projs.add(new Project(name, days, score, endDay, projSkills));
             currentProj++;
         }
+        System.out.println(conts);
+        System.out.println(projs);
     }
 
 }
