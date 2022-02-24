@@ -24,7 +24,11 @@ public class Contributor {
         return foundSkill;
     }
     public double goodness(){
-        return 1;
+        double testValue = 0;
+        for(int i = 0;i < skills.size();i++){
+            testValue += skills.get(i).skillLevel;
+        }
+        return testValue;
     }
     public int suitability(Skill skillGiven){
         if(skillGiven.skillLevel >= getSkill(skillGiven.skillName).skillLevel){
