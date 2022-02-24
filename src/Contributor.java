@@ -31,7 +31,8 @@ public class Contributor {
         return testValue;
     }
     public int suitability(Skill skillGiven){
-        if(skillGiven.skillLevel >= getSkill(skillGiven.skillName).skillLevel){
+        if(getSkill(skillGiven.skillName).skillLevel >= skillGiven.skillLevel ){
+            System.out.println(getSkill(skillGiven.skillName).skillLevel + " vs " +  skillGiven.skillLevel);
             return 2;
         } else if (skillGiven.skillLevel - 1 == getSkill(skillGiven.skillName).skillLevel) {
             return 1;

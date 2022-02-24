@@ -57,11 +57,12 @@ public class Combiner {
                     while (!personFound) {
                         if (availableConts.get(increment).suitability(i.roles.get(roleLooking)) == valueLookingFor) {
                             personFound = true;
+                            System.out.println(availableConts.get(increment).name + " was chosen for " +  i.roles.get(roleLooking).skillName + " " + i.roles.get(roleLooking).skillLevel);
                             i.woking.add(new WorkingOn(availableConts.get(increment), i.roles.get(roleLooking)));
                             availableConts.get(increment).isWorking = true;
                         }
                         increment += 1;
-                        if (increment == availableConts.size()) {
+                        if (increment >= availableConts.size()) {
                             if (valueLookingFor == 1) {
                                 valueLookingFor = 2;
                                 increment = 0;
