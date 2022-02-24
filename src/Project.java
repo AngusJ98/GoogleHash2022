@@ -9,6 +9,7 @@ public class Project {
     ArrayList<Skill> roles;
     int daysWorkedOn;
     boolean isFinished = false;
+
     ArrayList<WorkingOn> woking;
     Project(String name, int days, int score, int endDay, ArrayList<Skill> roles) {
         this.name = name;
@@ -20,6 +21,18 @@ public class Project {
     public int getLastestFullDay(){
         return bestBefore-days;
     }
+    public float scorePerDay(){
+        float combineSkill = 0;
+        for(int i = 0; i < roles.size(); i++){
+            combineSkill = roles.get(i).skillLevel + combineSkill;
+        }
+        float combineSkillMult = 1;
+        float daysMult = 1;
+        float lastDay = getLastestFullDay();
+        float lastDayMult = 1;
+        return (score / ((combineSkill*combineSkillMult)*(days*daysMult)(lastDay*lastDayMult)));
+    }
+
     public boolean getComplete(){
         if (days == daysWorkedOn){
             return true;
@@ -31,6 +44,7 @@ public class Project {
         int scoreTwo;
         for (int i = 0; i < woking.size();i++){
             woking.get(i).contrib.isWorking = false;
+            woking.get(i).contrib.improveSkill(woking.get(i).skill);
         }
         this.isFinished = true;
         if (currentDay <= bestBefore){
