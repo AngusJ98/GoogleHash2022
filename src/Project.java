@@ -14,17 +14,36 @@ public class Project {
         this.days = days;
         this.bestBefore = endDay;
         this.roles = roles;
-        this.score = score;
+
     }
     public int getLastestFullDay(){
         return bestBefore-days;
+    }
+    public boolean getComplete(){
+        if (days == daysWorkedOn){
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public int getScore(int currentDay){
+        int scoreTwo;
+        int daysOver;
+        if (currentDay <= bestBefore){
+            return score;
+        } else {
+            scoreTwo = score - (currentDay- bestBefore);
+            if (scoreTwo < 1 ){
+                scoreTwo = 1;
+            }
+            return scoreTwo;
+        }
     }
     public boolean readyToGo(){
         if (woking.size() != roles.size()){
             return false;
         } else{
-            return true;
-        }
+            boolean true;
     }
 
 }

@@ -3,9 +3,11 @@ import java.util.ArrayList;
 public class Contributor {
     public ArrayList<Skill> skills;
     public String name;
+    public boolean isWorking;
     public Contributor(String name, ArrayList<Skill> skills){
         this.name = name;
         this.skills = skills;
+        isWorking = false;
     }
     public Skill getSkill(String skillName){
         Skill foundSkill = null;
