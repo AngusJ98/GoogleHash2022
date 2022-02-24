@@ -8,6 +8,7 @@ public class Project {
     int bestBefore;
     ArrayList<Skill> roles;
     int daysWorkedOn;
+    boolean isFinished = false;
     ArrayList<WorkingOn> woking;
     Project(String name, int days, int score, int endDay, ArrayList<Skill> roles) {
         this.name = name;
@@ -28,7 +29,10 @@ public class Project {
     }
     public int getScore(int currentDay){
         int scoreTwo;
-        int daysOver;
+        for (int i = 0; i < woking.size();i++){
+            woking.get(i).contrib.isWorking = false;
+        }
+        this.isFinished = true;
         if (currentDay <= bestBefore){
             return score;
         } else {
@@ -42,8 +46,9 @@ public class Project {
     public boolean readyToGo(){
         if (woking.size() != roles.size()){
             return false;
-        } else{
-            boolean true;
+        } else {
+            return true;
+        }
     }
 
 }
