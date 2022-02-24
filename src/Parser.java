@@ -5,9 +5,9 @@ public class Parser {
     
     int numContribute;
     int numProject;
-    
+    public static ArrayList<Contributor> conts = new ArrayList<>();
 
-    public static ArrayList<Contributor> getinfo(String fileName) {
+    public static void getinfo(String fileName) {
         ArrayList<String[]> rawInput = FileReader.readFileAsIntArray(fileName);
         String[] info = rawInput.get(0);
         int numContribute;
@@ -31,7 +31,10 @@ public class Parser {
             conts.add(new Contributor(name, contSkills));
             currentCont++;
         }
-        return conts;
+        int currentProj = 0;
+        while (currentProj < numProject) {
+            
+        }
     }
 
 }
