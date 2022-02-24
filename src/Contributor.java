@@ -21,4 +21,13 @@ public class Contributor {
         }
         return foundSkill;
     }
+    public void improveSkill(String skillName, int valueUsed){
+        Skill skillHas = this.getSkill(skillName);
+        if (valueUsed - skillHas.skillLevel >= 0){
+            if (skillHas.skillLevel <10){
+                skillHas.skillLevel += 1;
+            }
+
+        }
+    }
 }
