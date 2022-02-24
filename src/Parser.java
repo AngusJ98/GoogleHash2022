@@ -29,7 +29,7 @@ public class Parser {
                 contSkills.add(skill);
                 currentLine++;
             }
-            conts.add(new Contributor(name, contSkills));
+            Parser.conts.add(new Contributor(name, contSkills));
             currentCont++;
         }
         int currentProj = 0;
@@ -48,10 +48,10 @@ public class Parser {
                 projSkills.add(skill);
                 currentLine++;
             }
-            projs.add(new Project(name, days, score, endDay, projSkills));
+            Parser.projs.add(new Project(name, days, score, endDay, projSkills));
             currentProj++;
         }
-        System.out.println(conts);
+        System.out.println(Parser.conts);
         System.out.println(projs);
     }
 
