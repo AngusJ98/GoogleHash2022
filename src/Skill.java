@@ -6,5 +6,5 @@ public class Skill {
         skillLevel = SkillLevel;
 
     }
-    
+
 }
