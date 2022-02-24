@@ -52,10 +52,12 @@ public class Combiner {
                 int increment = 0;
                 boolean cantComplete = false;
                 while(!personFound){
+
                     increment += 1;
                     if (increment == availableConts.size()){
                         if (valueLookingFor == 1){
                             valueLookingFor = 2;
+                            increment = 0;
                         } else{
                             personFound = true;
                             cantComplete = true;
