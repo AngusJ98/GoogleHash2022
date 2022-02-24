@@ -3,8 +3,7 @@ import java.util.ArrayList;
 
 public class Parser {
     
-    int numContribute;
-    int numProject;
+    public static ArrayList<Project> projs = new ArrayList<>();
     public static ArrayList<Contributor> conts = new ArrayList<>();
 
     public static void getinfo(String fileName) {
@@ -33,7 +32,21 @@ public class Parser {
         }
         int currentProj = 0;
         while (currentProj < numProject) {
-            
+            String[] projInfo = rawInput.get(currentLine);
+            String name = projInfo[0];
+            ArrayList<Skill> projSkills = new ArrayList<>();
+            int days = Integer.parseInt(projInfo[1]);
+            int score = Integer.parseInt(projInfo[2]);
+            int endDay = Integer.parseInt(projInfo[3]);
+            int numRoles = Integer.parseInt(projInfo[4]);
+            currentLine++;
+
+            for (int i = 0; i < numRoles; i++) {
+                Skill skill = new Skill(rawInput.get(currentLine)[0],  Integer.parseInt(rawInput.get(currentLine)[1]));
+                projSkills.add(skill);
+                currentLine++;
+            }
+            projs.add(new Project(name, days, score, endDay, projSkills));
         }
     }
 
