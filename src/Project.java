@@ -30,7 +30,7 @@ public class Project {
         float daysMult = 1;
         float lastDay = getLastestFullDay();
         float lastDayMult = 1;
-        return (score / ((combineSkill*combineSkillMult)*(days*daysMult)(lastDay*lastDayMult)));
+        return (score / ((combineSkill*combineSkillMult)*(days*daysMult)*(lastDay*lastDayMult)));
     }
 
     public boolean getComplete(){
