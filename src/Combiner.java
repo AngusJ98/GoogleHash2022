@@ -86,9 +86,7 @@ public class Combiner {
                         contrib.contrib.isWorking = false;
                     }
                     i.woking = new ArrayList<WorkingOn>();
-                } else {
-                    // put code here
-                }
+                } 
 
             }
 
