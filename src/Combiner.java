@@ -26,47 +26,65 @@ public class Combiner {
             Collections.sort(incompleteProjs, Comparator.comparingDouble(proj -> proj.scorePerDay()));
 
             for (Project i : incompleteProjs) {
-
-                ArrayList<Contributor> availableConts = new ArrayList<>();
-                for (Contributor j : contributors) {
-                    if (!j.isWorking) {
-                        availableConts.add(j);
-                    }
-                }
-                ArrayList<Skill> requiredSkills = i.roles;
-                boolean personFound = false;
-                int roleLooking = 0;
-                boolean canMentor = false;
-                int skillReq = i.roles.get(roleLooking).skillLevel;
-                for (int people = 0; people < i.woking.size(); people++){
-                    if (i.woking.get(people).contrib.getSkill(i.roles.get(roleLooking).skillName).skillLevel >= skillReq){
-                        canMentor = true;
-                    }
-                }
-                int valueLookingFor;
-                if (canMentor){
-                    valueLookingFor = 1;
-                } else {
-                    valueLookingFor = 2;
-                }
-                int increment = 0;
                 boolean cantComplete = false;
-                while(!personFound){
-
-                    increment += 1;
-                    if (increment == availableConts.size()){
-                        if (valueLookingFor == 1){
-                            valueLookingFor = 2;
-                            increment = 0;
-                        } else{
-                            personFound = true;
-                            cantComplete = true;
+                boolean isComplete = false;
+                int roleLooking = 0;
+                while (!cantComplete || !isComplete) {
+                    ArrayList<Contributor> availableConts = new ArrayList<>();
+                    for (Contributor j : contributors) {
+                        if (!j.isWorking) {
+                            availableConts.add(j);
                         }
                     }
+
+                    boolean personFound = false;
+
+                    boolean canMentor = false;
+                    int skillReq = i.roles.get(roleLooking).skillLevel;
+                    for (int people = 0; people < i.woking.size(); people++) {
+                        if (i.woking.get(people).contrib.getSkill(i.roles.get(roleLooking).skillName).skillLevel >= skillReq) {
+                            canMentor = true;
+                        }
+                    }
+                    int valueLookingFor;
+                    if (canMentor) {
+                        valueLookingFor = 1;
+                    } else {
+                        valueLookingFor = 2;
+                    }
+                    int increment = 0;
+                    while (!personFound) {
+                        if (availableConts.get(increment).suitability(i.roles.get(roleLooking)) == valueLookingFor) {
+                            personFound = true;
+                            i.woking.add(new WorkingOn(availableConts.get(increment), i.roles.get(roleLooking)));
+                            availableConts.get(increment).isWorking = true;
+                        }
+                        increment += 1;
+                        if (increment == availableConts.size()) {
+                            if (valueLookingFor == 1) {
+                                valueLookingFor = 2;
+                                increment = 0;
+                            } else {
+                                personFound = true;
+                                cantComplete = true;
+                            }
+                        }
+                        if (cantComplete) {
+                            for (Contributor contrib : availableConts) {
+                                contrib.isWorking = false;
+                            }
+                            i.woking = new ArrayList<WorkingOn>();
+                        } else {
+                            // put code here
+                        }
+                    }
+                    roleLooking = roleLooking + 1;
+                    if (roleLooking >= i.roles.size()){
+                        isComplete = true;
+                    }
+                    //grab people
+
                 }
-                //grab people
-
-
 
             }
 
