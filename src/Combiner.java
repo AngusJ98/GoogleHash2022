@@ -54,10 +54,16 @@ public class Combiner {
                         valueLookingFor = 2;
                     }
                     int increment = 0;
+                    System.out.println(personFound);
                     while (!personFound) {
+                        
                         if (availableConts.get(increment).suitability(i.roles.get(roleLooking)) == valueLookingFor) {
                             personFound = true;
+<<<<<<< Updated upstream
                             System.out.println(availableConts.get(increment).name + " was chosen for " +  i.roles.get(roleLooking).skillName + " " + i.roles.get(roleLooking).skillLevel);
+=======
+                            System.out.println(availableConts.get(increment).suitability(i.roles.get(roleLooking)));
+>>>>>>> Stashed changes
                             i.woking.add(new WorkingOn(availableConts.get(increment), i.roles.get(roleLooking)));
                             availableConts.get(increment).isWorking = true;
                         }
@@ -67,6 +73,7 @@ public class Combiner {
                                 valueLookingFor = 2;
                                 increment = 0;
                             } else {
+                                System.out.println("FOUND!");
                                 personFound = true;
                                 cantComplete = true;
                             }
