@@ -10,9 +10,8 @@ public class Output {
         pog.append(projectsDone.size() + "\n");
         for (Project i : projectsDone) {
             pog.append(i.name + "\n");
-            pog.append(i.woking.get(0).contrib.name);
             for (WorkingOn j : i.woking) {
-                pog.append(" " + j.contrib.name);
+                pog.append(j.contrib.name + " ");
             }
             pog.append("\n");
         }
