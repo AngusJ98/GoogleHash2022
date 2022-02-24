@@ -19,29 +19,52 @@ public class Combiner {
             }
 
             // Code here for assigning people
-            ArrayList<Contributor> availableConts = new ArrayList<>();
-            for (Contributor i : contributors) {
-                if (!i.isWorking) {
-                    availableConts.add(i);
-                } 
-            }
+
+
 
             //sort incompleteProjs
             Collections.sort(incompleteProjs, Comparator.comparingDouble(proj -> proj.scorePerDay()));
 
             for (Project i : incompleteProjs) {
 
-                
-
-                //grab people
-                ArrayList<Skill> requiredSkills = i.roles;
-                ArrayList<Contributor> currentCont = new ArrayList<>();
-                
-                
-                for (Skill j : requiredSkills) {
-
-                    
+                ArrayList<Contributor> availableConts = new ArrayList<>();
+                for (Contributor j : contributors) {
+                    if (!j.isWorking) {
+                        availableConts.add(j);
+                    }
                 }
+                ArrayList<Skill> requiredSkills = i.roles;
+                boolean personFound = false;
+                int roleLooking = 0;
+                boolean canMentor = false;
+                int skillReq = i.roles.get(roleLooking).skillLevel;
+                for (int people = 0; people < i.woking.size(); people++){
+                    if (i.woking.get(people).contrib.getSkill(i.roles.get(roleLooking).skillName).skillLevel >= skillReq){
+                        canMentor = true;
+                    }
+                }
+                int valueLookingFor;
+                if (canMentor){
+                    valueLookingFor = 1;
+                } else {
+                    valueLookingFor = 2;
+                }
+                int increment = 0;
+                boolean cantComplete = false;
+                while(!personFound){
+                    increment += 1;
+                    if (increment == availableConts.size()){
+                        if (valueLookingFor == 1){
+                            valueLookingFor = 2;
+                        } else{
+                            personFound = true;
+                            cantComplete = true;
+                        }
+                    }
+                }
+                //grab people
+
+
 
             }
 
