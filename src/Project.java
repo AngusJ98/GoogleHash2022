@@ -17,6 +17,9 @@ public class Project {
         this.bestBefore = endDay;
         this.roles = roles;
         woking = new ArrayList<WorkingOn>();
+        for(int i = 0; i < roles.size(); i++){
+            System.out.println(roles.get(i));
+        }
     }
     public int getLastestFullDay(){
         return bestBefore-days;
@@ -61,6 +64,7 @@ public class Project {
         if (woking.size() != roles.size()){
             return false;
         } else {
+            System.out.println(this.name + " is ready to go!");
             return true;
         }
     }

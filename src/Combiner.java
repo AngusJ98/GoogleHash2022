@@ -4,10 +4,12 @@ import java.util.Comparator;
 
 public class Combiner {
     public Combiner(ArrayList<Project> projects, ArrayList<Contributor> contributors){
+        boolean print = false;
         int projectsComplete = 0;
         int days = 0;
         int score = 0;
         while(projectsComplete < projects.size()){
+            System.out.println("Days: " + days + " -  Projects Complete: " +  projectsComplete);
             ArrayList<Project> incompleteProjs = new ArrayList<>();
             for (int i = 0; i < projects.size(); i++){
                 if(projects.get(i).getComplete()){
@@ -25,11 +27,13 @@ public class Combiner {
             //sort incompleteProjs
             Collections.sort(incompleteProjs, Comparator.comparingDouble(proj -> -proj.scorePerDay()));
 
+
             for (Project i : incompleteProjs) {
                 boolean cantComplete = false;
                 boolean isComplete = false;
                 int roleLooking = 0;
-                while (!cantComplete && !isComplete) {
+                boolean panic = false;
+                while (!isComplete) {
                     ArrayList<Contributor> availableConts = new ArrayList<>();
                     for (Contributor j : contributors) {
                         if (!j.isWorking) {
@@ -37,12 +41,14 @@ public class Combiner {
                         }
                     }
 
-                    Collections.sort(availableConts, Comparator.comparingDouble(cont -> -cont.goodness()));
+
+                    Collections.shuffle(availableConts);
                     boolean personFound = false;
 
                     boolean canMentor = false;
                     int skillReq = i.roles.get(roleLooking).skillLevel;
                     for (int people = 0; people < i.woking.size(); people++) {
+                       // System.out.println("Checking here " + i.roles.get(roleLooking).skillName);
                         if (i.woking.get(people).contrib.getSkill(i.roles.get(roleLooking).skillName).skillLevel >= skillReq) {
                             canMentor = true;
                         }
@@ -53,19 +59,29 @@ public class Combiner {
                     } else {
                         valueLookingFor = 2;
                     }
+
+//                    if (!print){
+//                        print = true;
+//                        System.out.println("I hate this");
+//                        System.out.println(availableConts.size());
+//                        for (int fuckThis = 0; fuckThis < availableConts.size(); fuckThis++){
+//                            availableConts.get(fuckThis).printSkills();
+//                        }
+
                     int increment = 0;
-                    System.out.println(personFound);
+
                     while (!personFound) {
-                        
-                        if (availableConts.get(increment).suitability(i.roles.get(roleLooking)) == valueLookingFor) {
-                            personFound = true;
-<<<<<<< Updated upstream
-                            System.out.println(availableConts.get(increment).name + " was chosen for " +  i.roles.get(roleLooking).skillName + " " + i.roles.get(roleLooking).skillLevel);
-=======
-                            System.out.println(availableConts.get(increment).suitability(i.roles.get(roleLooking)));
->>>>>>> Stashed changes
-                            i.woking.add(new WorkingOn(availableConts.get(increment), i.roles.get(roleLooking)));
-                            availableConts.get(increment).isWorking = true;
+                        //System.out.println("Increment: "+ increment);
+//                       // System.out.println(availableConts.get(increment).suitability(i.roles.get(roleLooking)) );
+//                        System.out.println(availableConts.size() + " - " + increment);
+//                        System.out.println(i.roles.size() + " - " + roleLooking);
+                        if (availableConts.size() != 0 ) {
+                            if (availableConts.get(increment).suitability(i.roles.get(roleLooking)) == valueLookingFor) {
+                                personFound = true;
+
+                                i.woking.add(new WorkingOn(availableConts.get(increment), i.roles.get(roleLooking)));
+                                availableConts.get(increment).isWorking = true;
+                            }
                         }
                         increment += 1;
                         if (increment >= availableConts.size()) {
@@ -73,7 +89,6 @@ public class Combiner {
                                 valueLookingFor = 2;
                                 increment = 0;
                             } else {
-                                System.out.println("FOUND!");
                                 personFound = true;
                                 cantComplete = true;
                             }

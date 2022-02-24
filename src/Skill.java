@@ -7,4 +7,10 @@ public class Skill {
 
     }
 
+    @Override
+    public String toString() {
+        return "skillName='" + skillName + '\'' +
+                ", skillLevel=" + skillLevel +
+                '}';
+    }
 }
