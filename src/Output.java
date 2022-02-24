@@ -1,3 +1,5 @@
+import java.io.File;
+import java.io.FileWriter;
 import java.util.ArrayList;
 
 public class Output {
@@ -13,6 +15,17 @@ public class Output {
             pog.append("\n");
         }
         return pog.toString();
+    }
+
+    public static void write() {
+        try {
+            File outputFile = new File("out.txt");
+            FileWriter writer = new FileWriter(outputFile);
+            writer.append(formatOutput());
+            writer.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }
