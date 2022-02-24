@@ -37,6 +37,7 @@ public class Combiner {
                         }
                     }
 
+                    Collections.sort(availableConts, Comparator.comparingDouble(cont -> cont.goodness()));
                     boolean personFound = false;
 
                     boolean canMentor = false;
