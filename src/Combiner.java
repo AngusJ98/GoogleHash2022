@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class Combiner {
     public Combiner(ArrayList<Project> projects, ArrayList<Contributor> contributors){
@@ -25,12 +27,12 @@ public class Combiner {
             }
 
             //sort incompleteProjs
-
+            Collections.sort(incompleteProjs, Comparator.comparingDouble(proj -> proj.scorePerDay()));
 
             for (Project i : incompleteProjs) {
 
                 //sort contributors by points
-                
+
                 //grab people
                 ArrayList<Skill> requiredSkills = i.roles;
                 ArrayList<Contributor> currentCont = new ArrayList<>();
