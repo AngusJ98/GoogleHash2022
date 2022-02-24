@@ -82,7 +82,9 @@ public class Combiner {
                     if (roleLooking >= i.roles.size()){
                         isComplete = true;
                     }
-                    //grab people
+                    if (isComplete) {
+                        Output.projectsDone.add(i);
+                    }
 
                 }
 
